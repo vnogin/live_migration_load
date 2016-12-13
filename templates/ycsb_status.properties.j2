@@ -1,0 +1,15 @@
+# Status reporter properties
+status.interval=2
+
+# InfluxDb specific
+status.useinfluxdb=true
+
+status.influxdb.hostport=http://{{ influxdb_ip }}:8086
+
+status.influxdb.username=admin
+status.influxdb.password=admin
+
+status.influxdb.dbname=current_test
+
+status.influxdb.tagname=slice
+status.influxdb.tagvalue={{ slice_id }}
