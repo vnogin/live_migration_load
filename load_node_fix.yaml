@@ -19,7 +19,7 @@
 - name: Configure node from in-memory inventory
   hosts: just_created
   remote_user: vagrant
-  become: yes
+  become: no
   become_method: sudo
   gather_facts: false
   tasks:
@@ -35,5 +35,10 @@
       template: src=templates/gatling.conf.j2 dest=/home/vagrant/gatling/conf/gatling.conf
     - name: Update Downtimer script
       template: src=templates/run_downtimer.sh.j2 dest=/home/vagrant/run_downtimer.sh    
+    - name: Setup NTP
+      command: sudo ntpdate 80.240.216.155
+    - name: Start load script
+      command: /home/vagrant/start_tmux_sessions.sh
+
 #    - name: Pause play to interact with the servers
 #      pause: prompt="Playbook paused... hit <enter> to continue or <ctrl-c a> to abort"
